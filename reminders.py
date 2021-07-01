@@ -1,31 +1,31 @@
+from query_user import QueryUser
+from one_reminder import Reminder
+
 class Reminders:
     def __init__(self):
-        pass
+        self.list_of_reminders = []
 
-    def name(self):
-        input('What is the name for the reminder?')
+    def execute(self):
+        user = QueryUser()
+        user.display_menu()
+        awnser = user.get_input()
+        print(awnser)
+        if awnser == '1':
+            name = user.get_name()
+            entry = Reminder()
+            entry.name(name)
+            print(entry.name)
+            option = user.ext_options()
+            option = int(option)
+            awnser = user.get_option_awnser(option)
+            print(awnser)
+            entry.set_atribute(option, awnser)
+            print(f'date {entry.date}')
+            self.list_of_reminders[1] = awnser
+            print(self.list_of_reminders)
+        elif awnser == '2':
+            input('Name of reminder')
 
-    def set_date(self, date):
-        self.date = date
-
-    def set_time(self, time):
-        self.time = time
-
-    def set_tag(self, tag):
-        self.tag = tag
-
-    def set_notes(self, notes):
-        self.notes = notes
-
-    def set_priority(self, priority):
-        self.priority = priority
-
-    def set_complete(self, complete):
-        self.complete = complete
-
-    def set_location(self, location):
-        self.location = location
-
-    def repeat(self):
-        pass
-
+if __name__ == '__main__':
+    reminders = Reminders()
+    reminders.execute()
